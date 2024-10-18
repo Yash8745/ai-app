@@ -1,0 +1,27 @@
+.record-button {
+    border: none;
+    border-radius: 50%;
+    background-color: #1a1a1a; /* Background color of the button */
+    padding: 20px; /* Padding to create a circular button */
+    cursor: pointer;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+}
+
+.record-button:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.record-button.glow {
+    animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    }
+    to {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 1);
+    }
+}
