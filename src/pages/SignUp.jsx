@@ -1,8 +1,49 @@
-import React from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
 import { Container, Typography, TextField, Button, Checkbox, FormControlLabel, Grid, Box } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
+import axios from 'axios';
 
 const SignUp = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [allowExtraEmails, setAllowExtraEmails] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const user = {
+      username: fullName,
+      email: email,
+      password: password,
+    };
+
+    try {
+      const response = await axios.post('http://localhost:3001/api/signup', user);
+      console.log(response.data);
+      setSuccessMessage('User registered successfully!');
+      setErrorMessage('');
+      setFullName('');
+      setEmail('');
+      setPassword('');
+      setAllowExtraEmails(false);
+
+      // Redirect to login page after successful signup
+      setTimeout(() => {
+        navigate('/Login'); // Navigate to the login page
+      }, 1000); // Optional: delay for 1 second to show success message
+
+    } catch (error) {
+      console.error('Error during signup:', error.response?.data);
+      setErrorMessage('Registration failed. Please try again.');
+      setSuccessMessage('');
+    }
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <Box
@@ -13,18 +54,27 @@ const SignUp = () => {
           alignItems: 'center',
           borderRadius: 2,
           padding: 3,
-          backgroundColor: '#000000', // Black background for the container
-          color: '#ffffff', // White text for contrast
-          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)', // Deeper shadow for a more elevated look
+          backgroundColor: '#000000',
+          color: '#ffffff',
+          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
         }}
       >
-        {/* Heading */}
         <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#ffffff' }}>
           Sign Up
         </Typography>
 
-        {/* Sign Up Form */}
-        <Box component="form" sx={{ mt: 1 }}>
+        {successMessage && (
+          <Typography variant="body1" sx={{ color: '#76ff03', marginBottom: 2 }}>
+            {successMessage}
+          </Typography>
+        )}
+        {errorMessage && (
+          <Typography variant="body1" sx={{ color: '#ff1744', marginBottom: 2 }}>
+            {errorMessage}
+          </Typography>
+        )}
+
+        <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -35,14 +85,16 @@ const SignUp = () => {
                 name="fullName"
                 autoComplete="name"
                 variant="outlined"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                 sx={{
                   borderRadius: '8px',
-                  backgroundColor: '#333333', // Dark background for input field
+                  backgroundColor: '#333333',
                   '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#ffffff', // Light border on hover
+                    borderColor: '#ffffff',
                   },
                   '& .MuiInputBase-input': {
-                    color: '#ffffff', // White text for input
+                    color: '#ffffff',
                   },
                 }}
               />
@@ -57,6 +109,8 @@ const SignUp = () => {
                 name="email"
                 autoComplete="email"
                 variant="outlined"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 sx={{
                   borderRadius: '8px',
                   backgroundColor: '#333333',
@@ -80,6 +134,8 @@ const SignUp = () => {
                 id="password"
                 autoComplete="new-password"
                 variant="outlined"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 sx={{
                   borderRadius: '8px',
                   backgroundColor: '#333333',
@@ -95,9 +151,15 @@ const SignUp = () => {
 
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" sx={{ color: '#ffffff', '&.Mui-checked': { color: '#ffffff' } }} />}
+                control={
+                  <Checkbox
+                    value={allowExtraEmails}
+                    onChange={(e) => setAllowExtraEmails(e.target.checked)}
+                    sx={{ color: '#ffffff', '&.Mui-checked': { color: '#ffffff' } }}
+                  />
+                }
                 label="I want to receive updates via email."
-                sx={{ color: '#ffffff' }} // White text for the label
+                sx={{ color: '#ffffff' }}
               />
             </Grid>
           </Grid>
@@ -111,11 +173,11 @@ const SignUp = () => {
               mb: 2,
               borderRadius: '20px',
               padding: '10px 0',
-              backgroundColor: '#555555', // Darker gray button color
-              color: '#ffffff', // White text on button
+              backgroundColor: '#555555',
+              color: '#ffffff',
               '&:hover': {
-                backgroundColor: '#ffffff', // Button turns white on hover
-                color: '#000000', // Text turns black on hover
+                backgroundColor: '#ffffff',
+                color: '#000000',
               },
               textTransform: 'none',
             }}
@@ -137,25 +199,24 @@ const SignUp = () => {
           </Grid>
         </Box>
 
-        {/* Social Signup Option */}
         <Grid container spacing={2} sx={{ marginTop: 2 }}>
           <Grid item xs={12}>
             <Button
               fullWidth
               variant="outlined"
-              startIcon={<GoogleIcon sx={{ color: '#4285F4' }} />} // Original Google color
+              startIcon={<GoogleIcon sx={{ color: '#4285F4' }} />}
               sx={{
                 borderRadius: '20px',
                 padding: '10px 0',
-                color: '#ffffff', // White text
-                borderColor: '#444444', // Darker border color
+                color: '#ffffff',
+                borderColor: '#444444',
                 '&:hover': {
-                  borderColor: '#ffffff', // Light border on hover
-                  color: '#000000', // Keep text white on hover
+                  borderColor: '#ffffff',
+                  color: '#000000',
                   '& .MuiSvgIcon-root': {
-                    color: '#4285F4', // Google icon returns to original color on hover
+                    color: '#4285F4',
                   },
-                  backgroundColor: '#ffffff', // Dark background on hover
+                  backgroundColor: '#ffffff',
                 },
               }}
             >
