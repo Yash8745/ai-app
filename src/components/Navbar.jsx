@@ -1,7 +1,6 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,6 +9,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import { Link } from 'react-scroll';
+import Memopin from '../assets/Memopin.png'; // Import your PNG logo
 
 const Navigation = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -32,12 +32,20 @@ const Navigation = () => {
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: '#1a1a1a', boxShadow: 'none' }}>
-      <Toolbar sx={{ justifyContent: 'space-between' }}>
-        {/* Logo or brand name */}
-        <Typography variant="h6" component="div" sx={{ color: '#ffffff', fontWeight: 'bold' }}>
-          Memopin
-        </Typography>
+    <AppBar position="fixed" sx={{ backgroundColor: '#ADD8E6', boxShadow: 'none', height: '70px' }}>
+      <Toolbar sx={{ justifyContent: 'space-between', display: 'flex', alignItems: 'center' }}>
+        {/* Logo using PNG image */}
+        <Box
+          component="img"
+          src={Memopin} // Ensure it's pointing to the PNG image
+          alt="Memopin Logo"
+          sx={{
+            height: '70px', // Adjust the size of the logo
+            width: '220px',
+            objectFit: 'contain', // Ensures the aspect ratio remains intact
+            marginLeft: '0px', // Add margin if needed for spacing
+          }}
+        />
 
         {/* Navigation Links */}
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -47,9 +55,9 @@ const Navigation = () => {
               sx={{
                 margin: '0 12px',
                 textTransform: 'none',
-                color: '#ffffff',
+                color: '#003366', // Dark Blue color similar to the logo
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: 'rgba(0, 51, 102, 0.1)', // Slight dark blue hover effect
                 },
               }}
             >
@@ -76,13 +84,8 @@ const Navigation = () => {
 
         {/* Mobile Navigation Menu */}
         <Box sx={{ display: { xs: 'block', md: 'none' } }}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={handleMenuOpen}
-          >
-            <MenuIcon sx={{ color: '#ffffff' }} />
+          <IconButton edge="start" color="inherit" aria-label="menu" onClick={handleMenuOpen}>
+            <MenuIcon sx={{ color: '#003366' }} /> {/* Adjust icon color */}
           </IconButton>
           <Menu
             anchorEl={anchorEl}
@@ -91,7 +94,9 @@ const Navigation = () => {
           >
             {['Home', 'Features', 'Get Started'].map((text) => (
               <MenuItem key={text} onClick={handleMenuClose}>
-                <Link to={text.toLowerCase().replace(/\s+/g, '-')} smooth={true} duration={500}>{text}</Link>
+                <Link to={text.toLowerCase().replace(/\s+/g, '-')} smooth={true} duration={500}>
+                  {text}
+                </Link>
               </MenuItem>
             ))}
           </Menu>

@@ -2,6 +2,7 @@ import { useState } from 'react'; // Import useState to manage form data
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 import { Container, Typography, TextField, Button, Grid, Box, CircularProgress } from '@mui/material';
 import axios from 'axios'; // Import axios for making HTTP requests
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate(); // Initialize useNavigate
@@ -58,24 +59,24 @@ const Login = () => {
           alignItems: 'center',
           borderRadius: 2,
           padding: 3,
-          backgroundColor: '#000000', // Black background for the container
+          backgroundColor: '#ADD8E6', // Black background for the container
           color: '#ffffff', // White text for contrast
           boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)', // Deeper shadow for a more elevated look
         }}
       >
         {/* Heading */}
-        <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#ffffff' }}>
+        <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#003366' }}>
           Login
         </Typography>
 
         {/* Success and Error Messages */}
         {successMessage && (
-          <Typography variant="body1" sx={{ color: '#76ff03', marginBottom: 2 }}>
+          <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
             {successMessage}
           </Typography>
         )}
         {errorMessage && (
-          <Typography variant="body1" sx={{ color: '#ff1744', marginBottom: 2 }}>
+          <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
             {errorMessage}
           </Typography>
         )}
@@ -96,7 +97,7 @@ const Login = () => {
                 onChange={(e) => setUsername(e.target.value)} // Update state on input change
                 sx={{
                   borderRadius: '8px',
-                  backgroundColor: '#333333',
+                  backgroundColor: '#ffffff',
                   '&:hover .MuiOutlinedInput-notchedOutline': {
                     borderColor: '#ffffff',
                   },
@@ -121,7 +122,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)} // Update state on input change
                 sx={{
                   borderRadius: '8px',
-                  backgroundColor: '#333333',
+                  backgroundColor: '#ffffff',
                   '&:hover .MuiOutlinedInput-notchedOutline': {
                     borderColor: '#ffffff',
                   },
@@ -146,7 +147,7 @@ const Login = () => {
                 mb: 2,
                 borderRadius: '20px',
                 padding: '10px 0',
-                backgroundColor: '#555555', // Darker gray button color
+                backgroundColor: '#003366', // Darker gray button color
                 color: '#ffffff', // White text on button
                 '&:hover': {
                   backgroundColor: '#ffffff', // Button turns white on hover
@@ -162,11 +163,11 @@ const Login = () => {
 
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Typography variant="body2" sx={{ color: '#ffffff' }}>
+              <Typography variant="body2" sx={{ color: '#003366' }}>
                 Don’t have an account?{' '}
-                <a href="/sign-up" style={{ textDecoration: 'none', color: '#ffffff', transition: 'color 0.3s' }}>
-                  <span style={{ color: '#ffffff', transition: 'color 0.3s' }}>Sign up</span>
-                </a>
+                <Link to="/" style={{ textDecoration: 'none', color: '#003366', transition: 'color 0.3s' }}>
+                  Sign up
+                </Link>
               </Typography>
             </Grid>
           </Grid>

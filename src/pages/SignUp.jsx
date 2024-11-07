@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for routing
 import { Container, Typography, TextField, Button, Checkbox, FormControlLabel, Grid, Box } from '@mui/material';
 import GoogleIcon from '@mui/icons-material/Google';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const SignUp = () => {
@@ -54,22 +55,22 @@ const SignUp = () => {
           alignItems: 'center',
           borderRadius: 2,
           padding: 3,
-          backgroundColor: '#000000',
-          color: '#ffffff',
+          backgroundColor: '#ADD8E6',
+          color: '#ADD8E6',
           boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
         }}
       >
-        <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#ffffff' }}>
+        <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#003366' }}>
           Sign Up
         </Typography>
 
         {successMessage && (
-          <Typography variant="body1" sx={{ color: '#76ff03', marginBottom: 2 }}>
+          <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
             {successMessage}
           </Typography>
         )}
         {errorMessage && (
-          <Typography variant="body1" sx={{ color: '#ff1744', marginBottom: 2 }}>
+          <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
             {errorMessage}
           </Typography>
         )}
@@ -89,7 +90,7 @@ const SignUp = () => {
                 onChange={(e) => setFullName(e.target.value)}
                 sx={{
                   borderRadius: '8px',
-                  backgroundColor: '#333333',
+                  backgroundColor: '#FFFFFF',
                   '&:hover .MuiOutlinedInput-notchedOutline': {
                     borderColor: '#ffffff',
                   },
@@ -113,7 +114,7 @@ const SignUp = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 sx={{
                   borderRadius: '8px',
-                  backgroundColor: '#333333',
+                  backgroundColor: '#FFFFFF',
                   '&:hover .MuiOutlinedInput-notchedOutline': {
                     borderColor: '#ffffff',
                   },
@@ -138,7 +139,7 @@ const SignUp = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 sx={{
                   borderRadius: '8px',
-                  backgroundColor: '#333333',
+                  backgroundColor: '#FFFFFF',
                   '&:hover .MuiOutlinedInput-notchedOutline': {
                     borderColor: '#ffffff',
                   },
@@ -155,11 +156,11 @@ const SignUp = () => {
                   <Checkbox
                     value={allowExtraEmails}
                     onChange={(e) => setAllowExtraEmails(e.target.checked)}
-                    sx={{ color: '#ffffff', '&.Mui-checked': { color: '#ffffff' } }}
+                    sx={{ color: '#003366', '&.Mui-checked': { color: '#003366' } }}
                   />
                 }
                 label="I want to receive updates via email."
-                sx={{ color: '#ffffff' }}
+                sx={{ color: '#003366' }}
               />
             </Grid>
           </Grid>
@@ -173,7 +174,7 @@ const SignUp = () => {
               mb: 2,
               borderRadius: '20px',
               padding: '10px 0',
-              backgroundColor: '#555555',
+              backgroundColor: '#003366',
               color: '#ffffff',
               '&:hover': {
                 backgroundColor: '#ffffff',
@@ -186,17 +187,18 @@ const SignUp = () => {
           </Button>
 
           <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                Already have an account?{' '}
-                <a href="/sign-in" style={{ textDecoration: 'none', color: '#ffffff', transition: 'color 0.3s' }}>
-                  <span style={{ color: '#ffffff', transition: 'color 0.3s' }}>
-                    Sign in
-                  </span>
-                </a>
-              </Typography>
-            </Grid>
-          </Grid>
+  <Grid item>
+    <Typography variant="body2" sx={{ color: '#003366' }}>
+      Already have an account?{' '}
+      <Link to="/Login" style={{ textDecoration: 'none', color: '#003366', transition: 'color 0.3s' }}>
+        <span style={{ color: '#003366', transition: 'color 0.3s' }}>
+          Login
+        </span>
+      </Link>
+    </Typography>
+  </Grid>
+</Grid>
+
         </Box>
 
         <Grid container spacing={2} sx={{ marginTop: 2 }}>
@@ -204,12 +206,12 @@ const SignUp = () => {
             <Button
               fullWidth
               variant="outlined"
-              startIcon={<GoogleIcon sx={{ color: '#4285F4' }} />}
+              startIcon={<GoogleIcon sx={{ color: '#003366' }} />}
               sx={{
                 borderRadius: '20px',
                 padding: '10px 0',
-                color: '#ffffff',
-                borderColor: '#444444',
+                color: '#003366',
+                borderColor: '#003366',
                 '&:hover': {
                   borderColor: '#ffffff',
                   color: '#000000',

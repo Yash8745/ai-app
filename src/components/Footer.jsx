@@ -1,4 +1,3 @@
-import React from 'react';
 import { Box, Grid, Link, Typography } from '@mui/material';
 
 const Footer = () => {
@@ -6,52 +5,53 @@ const Footer = () => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: '#000000', // Black background
-        color: '#ffffff',
+        backgroundColor: '#ADD8E6', // Blue background
+        color: '#003366',
         width: '100%', // Ensures the footer stretches across the full page width
-        padding: '15px 0', // Slimmer padding for a more aesthetic design
-        position: 'fixed', // Fixes the footer at the bottom
-        bottom: 0, // Attaches the footer to the bottom
-        left: 0, // Aligns to the left edge
-        right: 0, // Aligns to the right edge
+        padding: '10px 0', // Same height as header (10px top and bottom padding)
+        position: 'relative', // Fixes the footer at the bottom
+        bottom: 10, // Attaches the footer to the bottom
+        left: 10, // Aligns to the left edge
+        right: 10, // Aligns to the right edge
+        boxShadow: 'none', // No shadow to maintain uniformity with header
       }}
     >
-      <Box sx={{ maxWidth: '1200px', margin: '0 auto', padding: '0 16px' }}> {/* Controls content width */}
-        <Grid container spacing={3}>
+      <Box sx={{ maxWidth: '1200px', margin: '0 auto', padding: '0 16px' }}>
+        <Grid container spacing={2}>
           {/* Row 1: Brand and Description */}
-          <Grid item xs={12} sx={{ textAlign: 'center', marginBottom: '15px' }}>
-            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '8px' }}>
+          <Grid item xs={12} sx={{ textAlign: 'center', marginBottom: '8px' }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '4px', fontSize: '16px' }}>
               Memopin
             </Typography>
-            <Typography variant="body2" sx={{ color: '#888888' }}>
+            <Typography variant="body2" sx={{ color: '#003366', fontSize: '12px' }}>
               Your enhanced memory assistant, capturing moments effortlessly.
             </Typography>
           </Grid>
 
           {/* Row 2: Explore and Stay Connected */}
-          <Grid item xs={12} sx={{ textAlign: 'center', marginBottom: '15px' }}>
+          <Grid item xs={12} sx={{ textAlign: 'center', marginBottom: '8px' }}>
             <Box
               sx={{
                 display: 'flex',
                 justifyContent: 'center',
-                gap: '50px', // Space between Explore and Stay Connected
+                gap: '30px', // Reduced space between Explore and Stay Connected
                 flexWrap: 'wrap', // Allows wrapping in case of smaller screens
               }}
             >
               {/* Explore Links */}
               <Box>
-                <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px' }}>
+                <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '6px', fontSize: '14px' }}>
                   Explore
                 </Typography>
-                <Box sx={{ display: 'flex', gap: '24px' }}>
+                <Box sx={{ display: 'flex', gap: '16px' }}>
                   {['Home', 'Features', 'Get Started'].map((text) => (
                     <Link
                       key={text}
                       href={`#${text.toLowerCase().replace(/\s+/g, '-')}`}
                       sx={{
-                        color: '#888888', // Slightly gray color for links
+                        color: '#003366', // Slightly gray color for links
                         textDecoration: 'none',
-                        fontSize: '14px',
+                        fontSize: '12px',
                         transition: 'color 0.3s ease',
                         '&:hover': { color: '#ffffff' }, // Turn white on hover
                       }}
@@ -64,10 +64,10 @@ const Footer = () => {
 
               {/* Stay Connected Links */}
               <Box>
-                <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '10px' }}>
+                <Typography variant="h6" sx={{ fontWeight: 'bold', marginBottom: '6px', fontSize: '14px' }}>
                   Stay Connected
                 </Typography>
-                <Box sx={{ display: 'flex', gap: '24px' }}>
+                <Box sx={{ display: 'flex', gap: '16px' }}>
                   {['Twitter', 'LinkedIn', 'Facebook'].map((platform) => (
                     <Link
                       key={platform}
@@ -75,9 +75,9 @@ const Footer = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       sx={{
-                        color: '#888888',
+                        color: '#003366',
                         textDecoration: 'none',
-                        fontSize: '14px',
+                        fontSize: '12px',
                         transition: 'color 0.3s ease',
                         '&:hover': { color: '#ffffff' },
                       }}
@@ -91,8 +91,8 @@ const Footer = () => {
           </Grid>
 
           {/* Footer Bottom Line */}
-          <Grid item xs={12} sx={{ textAlign: 'center', borderTop: '1px solid #444444', paddingTop: '10px' }}>
-            <Typography variant="body2" sx={{ color: '#888888' }}>
+          <Grid item xs={12} sx={{ textAlign: 'center', borderTop: '1px solid #444444', paddingTop: '4px' }}>
+            <Typography variant="body2" sx={{ color: '#003366', fontSize: '10px' }}>
               © 2024 Memopin. All Rights Reserved.
             </Typography>
           </Grid>
