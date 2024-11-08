@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { FaMicrophone } from 'react-icons/fa';
+import { useState, useEffect, useRef } from 'react';
+import { FaMicrophone } from 'react-icons/fa';  // Import FaMicrophone icon
 import '../styles/AudioRecorder.css';
 
 const AudioRecorder = () => {
     const [isRecording, setIsRecording] = useState(false);
-    const [mediaRecorder, setMediaRecorder] = useState(null);
-    const [audioChunks, setAudioChunks] = useState([]);
+    const [status, setStatus] = useState('');  // New state to manage status messages
+    const mediaRecorderRef = useRef(null);  // Ref to hold mediaRecorder
+    const audioChunksRef = useRef([]);  // Ref to hold audio chunks (avoiding unnecessary re-renders)
 
     useEffect(() => {
         const initializeRecorder = async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 const recorder = new MediaRecorder(stream);
-                setMediaRecorder(recorder);
+                mediaRecorderRef.current = recorder;
 
                 recorder.ondataavailable = (event) => {
-                    setAudioChunks(prev => [...prev, event.data]);
+                    audioChunksRef.current.push(event.data);  // Append to ref instead of state
                 };
 
                 recorder.onstop = () => {
-                    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                    // Send audioBlob to the backend
-                    uploadAudio(audioBlob);
+                    const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' }); // Keep default type
+                    uploadAudio(audioBlob);  // Upload the recorded audio once stop is triggered
                 };
             } catch (err) {
                 console.error('Error accessing the microphone', err);
@@ -29,40 +29,57 @@ const AudioRecorder = () => {
         };
 
         initializeRecorder();
-    }, []);
+    }, []); // Empty dependency array, `mediaRecorderRef` will not trigger re-renders
 
     const handleRecord = () => {
-        if (mediaRecorder) {
+        if (mediaRecorderRef.current) {
             setIsRecording(true);
-            setAudioChunks([]); // Clear previous audio chunks
-            mediaRecorder.start();
+            audioChunksRef.current = []; // Reset ref to avoid stale data
+            setStatus('Recording...');  // Show the status message
+            mediaRecorderRef.current.start();
         } else {
             console.error('Media recorder is not initialized');
         }
     };
 
     const handleStop = () => {
-        if (mediaRecorder) {
+        if (mediaRecorderRef.current) {
             setIsRecording(false);
-            mediaRecorder.stop();
+            setStatus('Recording done.');
+            mediaRecorderRef.current.stop();
             console.log("Recording done.");
         }
     };
 
     const uploadAudio = async (audioBlob) => {
+        setStatus('Processing...');  // Set the status to "Processing" while uploading
+
         const formData = new FormData();
-        formData.append('audio', audioBlob, 'recording.wav'); // Append the audio file
+        const timestamp = new Date().toISOString().replace(/:/g, '-');
+        const filename = `recording_${timestamp}.wav`;  // Default filename is .wav, but can handle others
+
+        formData.append('audio', audioBlob, filename);  // Append audio with unique filename
+
+        console.log(`Uploading file: ${filename}, size: ${audioBlob.size}, type: ${audioBlob.type}`);
 
         try {
-            const response = await fetch('http://localhost:5000/upload', { // Adjust the URL to your backend's address
+            const response = await fetch('http://localhost:5000/audio/upload', {
                 method: 'POST',
                 body: formData,
             });
 
-            const data = await response.json();
-            console.log('Transcription and vectorization response:', data);
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Transcription and vectorization response:', data);
+                setStatus('Saved');  // Update the status once saved
+            } else {
+                const text = await response.text();
+                console.error('Error uploading audio:', text);
+                setStatus('Error uploading audio');  // Show error status if upload fails
+            }
         } catch (error) {
             console.error('Error uploading audio:', error);
+            setStatus('Error uploading audio');  // Show error status on failure
         }
     };
 
@@ -76,8 +93,7 @@ const AudioRecorder = () => {
             >
                 <FaMicrophone size={50} color="white" />
             </button>
-            {isRecording && <p>Recording...</p>}
-            {!isRecording && audioChunks.length > 0 && <p>Recording done.</p>}
+            {status && <p>{status}</p>}  {/* Show status messages */}
         </div>
     );
 };
