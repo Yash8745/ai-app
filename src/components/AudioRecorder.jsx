@@ -59,9 +59,12 @@ const AudioRecorder = () => {
 
     const handleImageUpload = (event) => {
         if (event.target.files && event.target.files.length > 0) {
-            setSelectedImage(URL.createObjectURL(event.target.files[0]));
+            const file = event.target.files[0];
+            setSelectedImage(URL.createObjectURL(file));
+            uploadImage(file);  // Call uploadImage after selecting the file
         }
     };
+    
 
     const handleDragOver = (event) => {
         event.preventDefault();
@@ -77,9 +80,37 @@ const AudioRecorder = () => {
         setDragging(false);
         const files = event.dataTransfer.files;
         if (files && files.length > 0) {
-            setSelectedImage(URL.createObjectURL(files[0]));
+            const file = files[0];
+            setSelectedImage(URL.createObjectURL(file));
+            uploadImage(file);  // Call uploadImage after dropping the file
         }
     };
+    
+    // Upload Image Function
+    const uploadImage = async (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            const response = await fetch('http://localhost:5000/image/upload', {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log('Image upload response:', data);
+                setStatus(`Image uploaded successfully: ${data.filename}`);
+            } else {
+                const error = await response.json();
+                setStatus(`Error uploading image: ${error.error}`);
+            }
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            setStatus('Error uploading image');
+        }
+    };
+
 
     const uploadAudio = async (audioBlob) => {
         setStatus('Processing...');
@@ -112,6 +143,7 @@ const AudioRecorder = () => {
             setStatus('Error uploading audio');
         }
     };
+    
 
     return (
         <div className="audio-recorder-container">
