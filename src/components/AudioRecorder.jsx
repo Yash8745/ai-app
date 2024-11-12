@@ -40,7 +40,6 @@ const AudioRecorder = () => {
             setIsRecording(true);
             audioChunksRef.current = [];
             setStatus('Recording...');
-            mediaRecorderRef.current.start();
         } else {
             console.error('Media recorder is not initialized');
         }
@@ -111,23 +110,25 @@ const AudioRecorder = () => {
     };
 
     return (
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <div className="audio-recorder-container">
             <Navbar />
             <div style={{ textAlign: 'center', marginTop: '20px', padding: '20px' }}>
-    <p style={{ fontSize: '1.2em', fontWeight: 'bold', margin: '20px 0', color: '#333' }}>
-        Enter an image, document, or record your day to ensure you never forget anything and can retrieve it whenever needed.
-    </p>
-</div>
+                <p style={{ fontSize: '1.2em', fontWeight: 'bold', margin: '20px 0', color: '#003366' }}>
+                    Enter an image, document, or record your day to ensure you never forget anything and can retrieve it whenever needed.
+                </p>
+            </div>
 
-            <h2>Audio Recorder</h2>
+            <h2 style={{ color: '#003366' }}>Audio Recorder</h2>
             <button 
                 className={`record-button ${isRecording ? 'glow' : ''}`} 
                 onClick={isRecording ? handleStop : handleRecord}
                 aria-label={isRecording ? 'Stop Recording' : 'Start Recording'}
             >
-                <FaMicrophone size={50} color="white" />
+                <FaMicrophone size={50} color="#ADD8E6" />
             </button>
-            {status && <p>{status}</p>}
+            
+            {/* Display status messages with dark blue color */}
+            {status && <p style={{ color: '#003366' }}>{status}</p>}
 
             <div 
                 className={`image-upload ${dragging ? 'dragging' : ''}`} 

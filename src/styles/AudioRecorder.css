@@ -1,7 +1,18 @@
+/* AudioRecorder.css */
+.audio-recorder-container {
+    background-color: #ADD8E6; /* Light blue color */
+    min-height: calc(100vh - 60px);
+    padding: 40px;
+    text-align: center;
+    padding-bottom: 60px;
+    margin-bottom: 60px;
+    
+}
+
 .record-button {
     border: none;
     border-radius: 50%;
-    background-color: #1a1a1a;
+    background-color: #003366;
     padding: 20px;
     cursor: pointer;
     outline: none;
@@ -29,14 +40,19 @@
 .image-upload {
     margin-top: 20px;
     text-align: center;
-    padding: 20px;
-    border: 2px dashed #007bff;
+    padding: 60px;
+    border: 2px dashed #003366;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+    min-height: 200px; /* Increased height for better drag-and-drop area */
+    width: 80%; /* Adjust the width as needed */
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
 }
 
 .image-upload.dragging {
-    background-color: rgba(0, 123, 255, 0.1);
+    background-color: #003366;
 }
 
 .image-input {
@@ -45,8 +61,8 @@
 
 .image-upload-button {
     display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
+    padding: 40px 40px;
+    background-color: #003366;
     color: white;
     border: none;
     border-radius: 5px;
@@ -55,18 +71,20 @@
 }
 
 .image-upload-button:hover {
-    background-color: #0056b3;
+    background-color: #266fbc;
 }
 
 .image-preview {
     margin-top: 15px;
-    max-width: 300px;
-    max-height: 300px;
-    border-radius: 8px;
+    max-width: 600px;
+    max-height: 600px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
+    margin-bottom: 40px;
 }
 
 .image-preview:hover {
     transform: scale(1.05);
 }
+
