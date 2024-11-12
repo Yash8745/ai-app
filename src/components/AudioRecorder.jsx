@@ -14,16 +14,19 @@ const AudioRecorder = () => {
 
     useEffect(() => {
         const initializeRecorder = async () => {
+            console.log("Initializing recorder...");
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 const recorder = new MediaRecorder(stream);
                 mediaRecorderRef.current = recorder;
 
                 recorder.ondataavailable = (event) => {
+                    console.log("Data available", event.data);
                     audioChunksRef.current.push(event.data);
                 };
 
                 recorder.onstop = () => {
+                    console.log("Recording stopped");
                     const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
                     uploadAudio(audioBlob);
                 };
@@ -40,6 +43,7 @@ const AudioRecorder = () => {
             setIsRecording(true);
             audioChunksRef.current = [];
             setStatus('Recording...');
+            mediaRecorderRef.current.start();
         } else {
             console.error('Media recorder is not initialized');
         }
