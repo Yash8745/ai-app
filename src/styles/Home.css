@@ -1,187 +1,221 @@
-/* Carousel Image Styling */
-.carousel-image {
-    max-width: 80%;         /* Ensures image scales down responsively */
-    max-height: 250px;       /* Limits the image height to avoid overflow */
-    width: auto;             /* Maintain responsive width */
-    height: auto;            /* Maintain aspect ratio */
-    object-fit: contain;     /* Ensures the entire image fits within container */
-    border-radius: 10px;     /* Optional: Adds rounded corners for a modern look */
-    margin: 0 auto;          /* Center align the image */
+/* Apply Light Blue Background to the Entire Page */
+body {
+  background-color: #ADD8E6;  /* Light blue color */
+  margin: 0;  /* Remove default margin */
+  font-family: Arial, sans-serif;  /* Optional: Set a default font family */
+  color: #ffffff;  /* Dark blue text color */
 }
 
+
 /* Carousel Container Styling */
+@media (max-width: 768px) {
+  .carousel-image {
+    max-width: 100%; /* Make it scale up to fit smaller screens */
+    max-height: 200px; /* Adjust height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-image {
+    max-width: 100%; /* Full width on very small screens */
+    max-height: 150px; /* Reduce height */
+  }
+}
+
 .carousel-container {
-    width: 100%;             /* Full-width carousel */
-    max-width: 1200px;       /* Optional: Max width to contain the carousel */
-    margin: 0 auto;          /* Center the carousel on the page */
-    display: flex;
-    justify-content: center; /* Center content within the container */
-    align-items: center;
-    overflow: hidden;        /* Hide overflow to avoid scrollbars */
-    position: relative;      /* Position relative for any inner positioning */
-    padding: 20px;           /* Adds space around the carousel */
+  width: 100%;             /* Full-width carousel */
+  max-width: 1200px;       /* Optional: Max width to contain the carousel */
+  margin: 0 auto;          /* Center the carousel on the page */
+  display: flex;
+  justify-content: center; /* Center content within the container */
+  align-items: center;
+  overflow: hidden;        /* Hide overflow to avoid scrollbars */
+  position: relative;      /* Position relative for any inner positioning */
+  background-color: #ADD8E6; /* Light blue background */
+}
+.carousel-image {
+  max-width: 100%;         /* Ensures image scales down responsively */
+  max-height: 400px;       /* Limits the image height to avoid overflow */
+  width: auto;             /* Maintain responsive width */
+  height: auto;            /* Maintain aspect ratio */     
+  object-fit: contain;/* Ensures the entire image fits within container */
+  border-radius: 20px;     /* Optional: Adds rounded corners for a modern look */
+  margin: 0 auto;          /* Center align the image */
 }
 
 /* Carousel Item Styling */
 .carousel-item {
-    display: flex;
-    justify-content: center; /* Center the image within each slide */
+  display: flex;
+  justify-content: center; /* Center the image within each slide */
+  align-items: center;
+  width: 100%;             /* Ensures each item takes full width */
+}
+
+/* Carousel Slider Styling */
+.carousel-slider {
+  background-color: #ADD8E6;  /* Light blue background */
+  border-radius: 10px;        /* Optional: Add rounded corners for a smoother look */
+}
+
+ /* Other Styles */
+ .tech-stack-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 4 columns */
+  gap: 20px; /* Space between the items */
+  justify-items: center; /* Center the items horizontally */
+  margin-top: 30px; /* Optional, adds space between content */
+}
+
+.tech-stack-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tech-stack-image {
+  width: 270px; /* Set image width */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers its container without distortion */
+  border-radius: 8px; /* Optional, for rounded corners */
+}
+
+.about-us-container {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  color: #003366;
+}
+
+/* Apply Dark Blue color to all text inside team member section */
+.about-us-team h3, 
+.about-us-team .role, 
+.about-us-team .description {
+  color: #003366; /* Dark Blue Color */
+}
+
+.about-us-team {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap; /* Ensures the items wrap on smaller screens */
+  color: #003366;
+}
+
+.team-member {
+  width: 250px; /* Width of each team member section */
+  text-align: center;
+  color: #003366;
+}
+
+.team-image {
+  width: 100%;
+  height: auto;
+  border-radius: 50%; /* Makes the images round */
+  border: 3px solid #ddd; /* Adds a border to the image */
+  margin-bottom: 15px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.role {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.description {
+  font-size: 1rem;
+  color: #777;
+}
+
+@media (max-width: 768px) {
+  .about-us-team {
+    flex-direction: column;
     align-items: center;
-    width: 100%;             /* Ensures each item takes full width */
+  }
+}
+
+.home-main {
+  margin-top: -10px; /* Reduce the top margin to reduce the gap */
+  background-color: #ADD8E6;
+}
+
+.welcome-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  gap: 40px;
+  color:#003366;
+}
+.tech-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  gap: 40px;
+  color:#003366;
+}
+
+.welcome-video {
+  flex: 1;
+  max-width: 55%;
+  margin-top: 50px;
+}
+
+.welcome-text {
+  flex: 1;
+  max-width: 45%;
+  padding-left: 10px;
+  text-align: justify;
+  margin-top: 40px;
+}
+
+.welcome-text h1 {
+  font-size: 2rem;
+  color: #003366; /* Dark Blue Color */
+  text-align: center;
+  margin-top: 10px;
+  
+}
+.tech-text h1{
+  margin-top: -100px;
+  text-align: center;
+  font-size: 2rem;
+  color: #003366;
+}
+.tech-text ul {
+  list-style-type: none; /* Optional: removes the default list bullets */
+  padding: 0;            /* Remove padding from the list */
+  margin: 0;             /* Remove margin from the list */
+}
+
+.tech-text li {
+  text-align: justify;   /* Justify the text in each list item */
+  margin-bottom: 10px;    /* Adds some space between list items */
 }
 
 
+.welcome-text p {
+  font-size: 1.2rem;
+  color: #003366; /* Dark Blue Color */
+  margin-top: 10px;
+  text-align: justify; /* Justify the paragraph text */
+}
 
-  
-    
-  /* Other Styles */
-  .tech-stack-images {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 4 columns */
-    gap: 40px; /* Space between the items */
-    justify-items: center; /* Center the items horizontally */
-    margin-top: 20px; /* Optional, adds space between content */
-  }
-  
-  .tech-stack-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .tech-stack-image {
-    width: 300px; /* Set image width */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: cover; /* Ensure the image covers its container without distortion */
-    border-radius: 8px; /* Optional, for rounded corners */
-  }
-  
-  .about-us-container {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    color: #003366;
-  }
-  
-  /* Apply Dark Blue color to all text inside team member section */
-  .about-us-team h3, 
-  .about-us-team .role, 
-  .about-us-team .description {
-    color: #003366; /* Dark Blue Color */
-  }
-  
-  .about-us-team {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    flex-wrap: wrap; /* Ensures the items wrap on smaller screens */
-    color: #003366;
-  }
-  
-  .team-member {
-    width: 250px; /* Width of each team member section */
-    text-align: center;
-    color: #003366;
-  }
-  
-  .team-image {
-    width: 100%;
-    height: auto;
-    border-radius: 50%; /* Makes the images round */
-    border: 3px solid #ddd; /* Adds a border to the image */
-    margin-bottom: 15px;
-  }
-  
-  h3 {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .role {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #555;
-  }
-  
-  .description {
-    font-size: 1rem;
-    color: #777;
-  }
-  
-  @media (max-width: 768px) {
-    .about-us-team {
-      flex-direction: column;
-      align-items: center;
-    }
-  }
-  
-  .home-main {
-    padding: 0; /* Remove any padding if applied */
-    margin-top: 20px; /* Reduce the top margin to reduce the gap */
-  }
-  
-  .welcome-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    gap: 40px;
-    color:#003366;
-  }
-  .tech-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-    gap: 40px;
-    color:#003366;
-  }
-  
-  .welcome-video {
-    flex: 1;
-    max-width: 45%;
-  }
-  
-  .welcome-text {
-    flex: 1;
-    max-width: 45%;
-    padding-left: 10px;
-    text-align: justify;
-    margin-top: 0;
-  }
-  
-  .welcome-text h1 {
-    font-size: 2rem;
-    color: #003366; /* Dark Blue Color */
-    text-align: center;
-    margin-top: 0;
-    
-  }
-  .tech-text h1{
-    margin-top: -100px;
-    text-align: center;
-    font-size: 2rem;
-    color: #003366;
-  }
-  
-  .welcome-text p {
-    font-size: 1.2rem;
-    color: #003366; /* Dark Blue Color */
-    margin-top: 10px;
-    text-align: justify; /* Justify the paragraph text */
-  }
-  
-  .home-main-content {
-    flex-grow: 1; /* Main content area will take up all available space */
-    overflow-y: auto; /* Enables vertical scrolling when content overflows */
-    padding: 20px;
-    margin-top: 80px; /* Space for the fixed navbar */
-  }
-  
-  button {
-    margin-top: 20px;
-    border-radius: 20px;
-    padding: 10px 20px;
-    text-transform: none;
-  }
-  
+.home-main-content {
+  flex-grow: 1; /* Main content area will take up all available space */
+  overflow-y: auto; /* Enables vertical scrolling when content overflows */
+  padding: 20px;
+  margin-top: 80px; /* Space for the fixed navbar */
+}
+
+button {
+  margin-top: 20px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  text-transform: none;
+}

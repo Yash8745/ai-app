@@ -32,7 +32,7 @@ const Navigation = () => {
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: '#ADD8E6', boxShadow: 'none', height: '70px' }}>
+    <AppBar position="fixed" sx={{ backgroundColor: '#ffffff', boxShadow: 'none', height: '70px' }}>
       <Toolbar sx={{ justifyContent: 'space-between', display: 'flex', alignItems: 'center' }}>
         {/* Logo using PNG image */}
         <Box

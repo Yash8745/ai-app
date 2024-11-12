@@ -9,9 +9,10 @@ import '../styles/Home.css'; // Importing the CSS file for Home page
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const carouselImages = [
-  '/Carouselimages/1.jpeg',
-  '/Carouselimages/2.jpeg',
-  '/Carouselimages/3.jpeg',
+  '/Carouselimages/1.png',
+  '/Carouselimages/2.png',
+  '/Carouselimages/3.png',
+  '/Carouselimages/4.png'
 ];
 
 const techStackImages = [
@@ -59,7 +60,7 @@ const Home = () => {
           <div className="welcome-container">
             <div className="welcome-video">
               <video width="100%" controls>
-                <source src="/path-to-your-video.mp4" type="video/mp4" />
+              <source src="/public/Video/Memopin.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
