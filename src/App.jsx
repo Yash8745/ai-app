@@ -5,6 +5,7 @@ import SignUp from './pages/SignUp';
 import Home from './pages/Home';
 import Main from './pages/Main';
 import Login from './pages/Login';
+import Model from './pages/Model';
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/main" element={<Main />} />
+          <Route path="/model" element={<Model />} />
         </Routes>
       </Box>
     </Router>
