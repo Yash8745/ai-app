@@ -95,7 +95,7 @@ const SignUp = () => {
                     borderColor: '#ffffff',
                   },
                   '& .MuiInputBase-input': {
-                    color: '#ffffff',
+                    color: '#003366',
                   },
                 }}
               />
@@ -119,7 +119,7 @@ const SignUp = () => {
                     borderColor: '#ffffff',
                   },
                   '& .MuiInputBase-input': {
-                    color: '#ffffff',
+                    color: '#003366',
                   },
                 }}
               />
@@ -144,7 +144,7 @@ const SignUp = () => {
                     borderColor: '#ffffff',
                   },
                   '& .MuiInputBase-input': {
-                    color: '#ffffff',
+                    color: '#003366',
                   },
                 }}
               />

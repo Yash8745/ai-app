@@ -102,7 +102,7 @@ const Login = () => {
                     borderColor: '#ffffff',
                   },
                   '& .MuiInputBase-input': {
-                    color: '#ffffff',
+                    color: '##003366',
                   },
                 }}
               />
@@ -127,7 +127,7 @@ const Login = () => {
                     borderColor: '#ffffff',
                   },
                   '& .MuiInputBase-input': {
-                    color: '#ffffff',
+                    color: '#003366',
                   },
                 }}
               />
