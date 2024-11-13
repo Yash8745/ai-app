@@ -121,7 +121,7 @@ const Home = () => {
     <div className="team-member">
       <img src="/PersonImages/person 2.jpg" alt="Person 2" className="team-image" />
       <h3>Nivarthi Ananya</h3>
-      <p className="role">Frontend and Database</p>
+      <p className="role">Frontend and Database Engineer</p>
       <p className="description">Made the UI and connected with database.</p>
     </div>
 
