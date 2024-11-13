@@ -1,31 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
 import { FaMicrophone } from 'react-icons/fa';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import '../styles/AudioRecorder.css';
 
 const AudioModel = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [status, setStatus] = useState('');
+    const [responseText, setResponseText] = useState(''); // State to store only the server response text
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
 
-
     useEffect(() => {
         const initializeRecorder = async () => {
-            console.log("Initializing recorder...");
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 const recorder = new MediaRecorder(stream);
                 mediaRecorderRef.current = recorder;
 
                 recorder.ondataavailable = (event) => {
-                    console.log("Data available", event.data);
                     audioChunksRef.current.push(event.data);
                 };
 
                 recorder.onstop = () => {
-                    console.log("Recording stopped");
                     const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/wav' });
                     uploadAudio(audioBlob);
                 };
@@ -56,7 +52,6 @@ const AudioModel = () => {
         }
     };
 
-
     const uploadAudio = async (audioBlob) => {
         setStatus('Processing...');
 
@@ -66,8 +61,6 @@ const AudioModel = () => {
 
         formData.append('audio', audioBlob, filename);
 
-        console.log(`Uploading file: ${filename}, size: ${audioBlob.size}, type: ${audioBlob.type}`);
-
         try {
             const response = await fetch('http://localhost:5000/model/upload', {
                 method: 'POST',
@@ -76,15 +69,15 @@ const AudioModel = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Transcription and vectorization response:-----------------------------', data);
+                setResponseText(`Response: ${JSON.stringify(data)}`); // Set response text here
                 setStatus('Saved');
             } else {
                 const text = await response.text();
-                console.error('Error uploading audio:', text);
+                setResponseText(`Error uploading audio: ${text}`);
                 setStatus('Error uploading audio');
             }
         } catch (error) {
-            console.error('Error uploading audio:', error);
+            setResponseText(`Error uploading audio: ${error.message}`);
             setStatus('Error uploading audio');
         }
     };
@@ -94,7 +87,7 @@ const AudioModel = () => {
             <Navbar />
             <div style={{ textAlign: 'center', marginTop: '20px', padding: '20px' }}>
                 <p style={{ fontSize: '1.2em', fontWeight: 'bold', margin: '20px 0', color: '#003366' }}>
-                    Enter an image, document, or record your day to ensure you never forget anything and can retrieve it whenever needed.
+                    Ask Question to retreive answer
                 </p>
             </div>
 
@@ -106,12 +99,12 @@ const AudioModel = () => {
             >
                 <FaMicrophone size={50} color="#ADD8E6" />
             </button>
-            
+
             {/* Display status messages with dark blue color */}
             {status && <p style={{ color: '#003366' }}>{status}</p>}
 
-            
-            <Footer />
+            {/* Display response text only */}
+            {responseText && <p style={{ color: '#003366', fontWeight: 'bold' }}>{responseText}</p>}
         </div>
     );
 };
