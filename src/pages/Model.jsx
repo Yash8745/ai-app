@@ -1,10 +1,10 @@
 
-import AudioRecorder from '../components/AudioRecorder';
+import AudioModel from '../components/AudioModel';
 
 const Main = () => {
   return (
     <>
-    <AudioRecorder/>
+    <AudioModel/>
     </>
   )
 }
