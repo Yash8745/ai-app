@@ -6,7 +6,6 @@
     text-align: center;
     padding-bottom: 60px;
     margin-bottom: 60px;
-    
 }
 
 .record-button {
@@ -38,7 +37,7 @@
 }
 
 .image-upload {
-    margin-top: 20px;
+    margin-top: 70px;
     text-align: center;
     padding: 60px;
     border: 2px dashed #003366;
@@ -49,6 +48,19 @@
     margin-left: auto;
     margin-right: auto;
     justify-content: center;
+    background-image: linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0),
+                      linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 75%, #f0f0f0 75%, #f0f0f0);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    cursor: pointer;
+    position: relative;
+    color: #003366;
+    font-size: 24px; /* Added to make the text larger */
+    font-weight: bold; /* Optional: Makes the text bold */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-upload.dragging {
@@ -56,22 +68,31 @@
 }
 
 .image-input {
-    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Hide the input but make it clickable */
+    cursor: pointer;
+    color: #003366;
 }
 
 .image-upload-button {
     display: inline-block;
-    padding: 40px 40px;
-    background-color: #003366;
-    color: white;
-    border: none;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #003366;
+    border: 2px solid #003366;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 10px;
 }
 
 .image-upload-button:hover {
     background-color: #266fbc;
+    color: white;
 }
 
 .image-preview {
@@ -82,9 +103,20 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease;
     margin-bottom: 40px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .image-preview:hover {
     transform: scale(1.05);
 }
 
+/* Ensures text inside the drag-and-drop box doesn't move around */
+.image-upload p {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #003366;
+    text-align: center;
+}

@@ -11,6 +11,7 @@ const AudioRecorder = () => {
     const audioChunksRef = useRef([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const [dragging, setDragging] = useState(false);
+    const [imageStatus, setImageStatus] = useState('');
 
     useEffect(() => {
         const initializeRecorder = async () => {
@@ -64,7 +65,6 @@ const AudioRecorder = () => {
             uploadImage(file);  // Call uploadImage after selecting the file
         }
     };
-    
 
     const handleDragOver = (event) => {
         event.preventDefault();
@@ -85,7 +85,7 @@ const AudioRecorder = () => {
             uploadImage(file);  // Call uploadImage after dropping the file
         }
     };
-    
+
     // Upload Image Function
     const uploadImage = async (file) => {
         const formData = new FormData();
@@ -100,17 +100,16 @@ const AudioRecorder = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Image upload response:', data);
-                setStatus(`Image uploaded successfully: ${data.filename}`);
+                setImageStatus(`Image uploaded successfully: ${data.filename}`);
             } else {
                 const error = await response.json();
-                setStatus(`Error uploading image: ${error.error}`);
+                setImageStatus(`Error uploading image: ${error.error}`);
             }
         } catch (error) {
             console.error('Error uploading image:', error);
-            setStatus('Error uploading image');
+            setImageStatus('Error uploading image');
         }
     };
-
 
     const uploadAudio = async (audioBlob) => {
         setStatus('Processing...');
@@ -132,7 +131,7 @@ const AudioRecorder = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Transcription and vectorization response:', data);
-                setStatus('Saved');
+                setStatus('Audio saved');
             } else {
                 const text = await response.text();
                 console.error('Error uploading audio:', text);
@@ -143,7 +142,6 @@ const AudioRecorder = () => {
             setStatus('Error uploading audio');
         }
     };
-    
 
     return (
         <div className="audio-recorder-container">
@@ -163,8 +161,15 @@ const AudioRecorder = () => {
                 <FaMicrophone size={50} color="#ADD8E6" />
             </button>
             
-            {/* Display status messages with dark blue color */}
+            {/* Audio description below the button */}
             {status && <p style={{ color: '#003366' }}>{status}</p>}
+
+            <p style={{ fontSize: '1.2em', marginTop: '10px', color: '#003366' }}>
+                {isRecording ? "Recording in progress..." : "Click the button to start recording your audio."}
+            </p>
+
+            {/* Dotted line separator for image upload section */}
+            <hr style={{ borderTop: '2px dotted #003366', margin: '20px 0' }} />
 
             <div 
                 className={`image-upload ${dragging ? 'dragging' : ''}`} 
@@ -173,7 +178,7 @@ const AudioRecorder = () => {
                 onDrop={handleDrop}
             >
                 <label htmlFor="image-input" className="image-upload-button">
-                    Select an Image or Drop Here
+                    Drag & Drop your image here
                 </label>
                 <input 
                     type="file" 
@@ -184,6 +189,10 @@ const AudioRecorder = () => {
                 />
                 {selectedImage && <img src={selectedImage} alt="Selected" className="image-preview" />}
             </div>
+
+            {/* Image description below dotted line */}
+            {imageStatus && <p style={{ color: '#003366' }}>{imageStatus}</p>}
+
             <Footer />
         </div>
     );
