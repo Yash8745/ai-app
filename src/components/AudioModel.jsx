@@ -6,7 +6,7 @@ import '../styles/AudioRecorder.css';
 const AudioModel = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [status, setStatus] = useState('');
-    const [responseText, setResponseText] = useState(''); // State to store only the server response text
+    const [responseText, setResponseText] = useState(''); // State to store only the response text
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
 
@@ -68,14 +68,19 @@ const AudioModel = () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                setResponseText(`Response: ${JSON.stringify(data)}`); // Set response text here
-                setStatus('Saved');
+            const data = await response.json();
+            // Only display the value of the "filename" key
+            if (data && data.filename) {
+                setResponseText(data.filename); // Display only the filename value
             } else {
-                const text = await response.text();
-                setResponseText(`Error uploading audio: ${text}`);
-                setStatus('Error uploading audio');
+                setResponseText('Audio processed successfully');
             }
+            setStatus('Saved');
+        } else {
+            const text = await response.text();
+            setResponseText(`Error uploading audio: ${text}`);
+            setStatus('Error uploading audio');
+        }
         } catch (error) {
             setResponseText(`Error uploading audio: ${error.message}`);
             setStatus('Error uploading audio');
@@ -87,7 +92,7 @@ const AudioModel = () => {
             <Navbar />
             <div style={{ textAlign: 'center', marginTop: '20px', padding: '20px' }}>
                 <p style={{ fontSize: '1.2em', fontWeight: 'bold', margin: '20px 0', color: '#003366' }}>
-                    Ask Question to retreive answer
+                    Enter an image, document, or record your day to ensure you never forget anything and can retrieve it whenever needed.
                 </p>
             </div>
 
