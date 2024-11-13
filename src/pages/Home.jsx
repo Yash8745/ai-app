@@ -113,24 +113,24 @@ const Home = () => {
       <img src="/PersonImages/person 1.webp" alt="Person 1" className="team-image" />
       <h3>Yash Narang</h3>
       
-      <p className="role">Role Title</p>
-      <p className="description">Description of what Person 1 did and their contributions to the project.</p>
+      <p className="role">Model Architect</p>
+      <p className="description"> Created the whole architecture of model and pipeline</p>
     </div>
 
     {/* Person 2 */}
     <div className="team-member">
       <img src="/PersonImages/person 2.jpg" alt="Person 2" className="team-image" />
       <h3>Nivarthi Ananya</h3>
-      <p className="role">Role Title</p>
-      <p className="description">Description of what Person 2 did and their contributions to the project.</p>
+      <p className="role">Frontend and Database</p>
+      <p className="description">Made the UI and connected with database.</p>
     </div>
 
     {/* Person 3 */}
     <div className="team-member">
       <img src="/PersonImages/person 3.jpg" alt="Person 3" className="team-image" />
       <h3>Rudransh Singh</h3>
-      <p className="role">Role Title</p>
-      <p className="description">Description of what Person 3 did and their contributions to the project.</p>
+      <p className="role">Model Engineer</p>
+      <p className="description">Wrote the code for models.</p>
     </div>
   </div>
 </div>
