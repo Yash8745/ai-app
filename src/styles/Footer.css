@@ -1,0 +1,96 @@
+/* General Footer Styling */
+footer {
+    background-color: #ffffff;
+    color: #003366;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: none;
+    padding: 20px 0; /* Add more padding for spacing */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for Explore and Stay Connected */
+    gap: 30px;
+    padding: 20px 0;
+  }
+  
+  .footer-brand-description {
+    text-align: center;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-link-section {
+    text-align: center;
+  }
+  
+  .footer-column-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-link-list {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  .footer-link {
+    color: #003366;
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-link:hover {
+    color: #ffffff;
+  }
+  
+  /* Footer Bottom Styling */
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid #444444;
+    padding-top: 8px;
+  }
+  
+  .footer-bottom-text {
+    color: #003366;
+    font-size: 10px;
+    margin: 0;
+  }
+  
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .footer-links {
+      flex-direction: column; /* Stack the sections on mobile */
+      gap: 20px;
+    }
+  
+    .footer-column-title {
+      text-align: left; /* Align titles to the left on mobile */
+    }
+  
+    .footer-bottom {
+      padding-top: 20px;
+    }
+  }
+  
