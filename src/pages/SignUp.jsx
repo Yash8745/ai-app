@@ -46,7 +46,7 @@ const SignUp = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="xs" sx={{ backgroundColor: '#ADD8E6', minHeight: '100vh' }}>
       <Box
         sx={{
           marginTop: 8,
@@ -56,8 +56,11 @@ const SignUp = () => {
           borderRadius: 2,
           padding: 3,
           backgroundColor: '#ADD8E6',
-          color: '#ADD8E6',
+          color: '#003366',
           boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
+          border: '2px solid #003366', // Added border
+          width: '100%', // Ensure full width
+          height: '100%', // Ensure full height
         }}
       >
         <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#003366' }}>
@@ -187,18 +190,17 @@ const SignUp = () => {
           </Button>
 
           <Grid container justifyContent="flex-end">
-  <Grid item>
-    <Typography variant="body2" sx={{ color: '#003366' }}>
-      Already have an account?{' '}
-      <Link to="/Login" style={{ textDecoration: 'none', color: '#003366', transition: 'color 0.3s' }}>
-        <span style={{ color: '#003366', transition: 'color 0.3s' }}>
-          Login
-        </span>
-      </Link>
-    </Typography>
-  </Grid>
-</Grid>
-
+            <Grid item>
+              <Typography variant="body2" sx={{ color: '#003366' }}>
+                Already have an account?{' '}
+                <Link to="/Login" style={{ textDecoration: 'none', color: '#003366', transition: 'color 0.3s' }}>
+                  <span style={{ color: '#003366', transition: 'color 0.3s' }}>
+                    Login
+                  </span>
+                </Link>
+              </Typography>
+            </Grid>
+          </Grid>
         </Box>
 
         <Grid container spacing={2} sx={{ marginTop: 2 }}>

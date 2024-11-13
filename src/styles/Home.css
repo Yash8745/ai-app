@@ -78,7 +78,15 @@ body {
   object-fit: cover; /* Ensure the image covers its container without distortion */
   border-radius: 8px; /* Optional, for rounded corners */
 }
-
+/* About Us Team Section */
+.about-us-team {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  flex-wrap: wrap; /* Ensures the items wrap on smaller screens */
+  color: #003366;
+  align-items: stretch; /* Ensures equal height for all team members */
+}
 .about-us-container {
   text-align: center;
   padding: 20px;
@@ -93,25 +101,22 @@ body {
   color: #003366; /* Dark Blue Color */
 }
 
-.about-us-team {
-  display: flex;
-  justify-content: space-around;
-  gap: 20px;
-  flex-wrap: wrap; /* Ensures the items wrap on smaller screens */
-  color: #003366;
-}
 
 .team-member {
   width: 250px; /* Width of each team member section */
   text-align: center;
   color: #003366;
+  display: flex;
+  flex-direction: column; /* Ensure content is stacked vertically */
+  align-items: center; /* Align content horizontally in the center */
 }
 
 .team-image {
-  width: 100%;
-  height: auto;
+  width: 100%; /* Ensure the image takes full width */
+  height: 250px; /* Fixed height to make images uniform */
+  object-fit: cover; /* Ensure the image covers the space without distortion */
   border-radius: 50%; /* Makes the images round */
-  border: 3px solid #ddd; /* Adds a border to the image */
+  border: 3px solid #003366; /* Adds a border to the image */
   margin-bottom: 15px;
 }
 
@@ -128,15 +133,24 @@ h3 {
 
 .description {
   font-size: 1rem;
-  color: #777;
+  color: #003366;
 }
 
 @media (max-width: 768px) {
   .about-us-team {
-    flex-direction: column;
+    flex-direction: column; /* Stack team members in a single column on smaller screens */
     align-items: center;
   }
+
+  .team-member {
+    width: 100%; /* Ensure full width for each team member section on small screens */
+  }
+
+  .team-image {
+    height: 200px; /* Adjust image height for smaller screens */
+  }
 }
+
 
 .home-main {
   margin-top: -10px; /* Reduce the top margin to reduce the gap */

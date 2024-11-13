@@ -106,33 +106,35 @@ const Home = () => {
 
           {/* About Us Section */}
           <div className="about-us-container">
-            <h2>About Us</h2>
-            <div className="about-us-team">
-              {/* Person 1 */}
-              <div className="team-member">
-                <img src="/images/person1.jpg" alt="Person 1" className="team-image" />
-                <h3>Person 1 Name</h3>
-                <p className="role">Role Title</p>
-                <p className="description">Description of what Person 1 did and their contributions to the project.</p>
-              </div>
+  <h2>About Us</h2>
+  <div className="about-us-team">
+    {/* Person 1 */}
+    <div className="team-member">
+      <img src="/PersonImages/person 1.webp" alt="Person 1" className="team-image" />
+      <h3>Yash Narang</h3>
+      
+      <p className="role">Role Title</p>
+      <p className="description">Description of what Person 1 did and their contributions to the project.</p>
+    </div>
 
-              {/* Person 2 */}
-              <div className="team-member">
-                <img src="/images/person2.jpg" alt="Person 2" className="team-image" />
-                <h3>Person 2 Name</h3>
-                <p className="role">Role Title</p>
-                <p className="description">Description of what Person 2 did and their contributions to the project.</p>
-              </div>
+    {/* Person 2 */}
+    <div className="team-member">
+      <img src="/PersonImages/person 2.jpg" alt="Person 2" className="team-image" />
+      <h3>Nivarthi Ananya</h3>
+      <p className="role">Role Title</p>
+      <p className="description">Description of what Person 2 did and their contributions to the project.</p>
+    </div>
 
-              {/* Person 3 */}
-              <div className="team-member">
-                <img src="/images/person3.jpg" alt="Person 3" className="team-image" />
-                <h3>Person 3 Name</h3>
-                <p className="role">Role Title</p>
-                <p className="description">Description of what Person 3 did and their contributions to the project.</p>
-              </div>
-            </div>
-          </div>
+    {/* Person 3 */}
+    <div className="team-member">
+      <img src="/PersonImages/person 3.jpg" alt="Person 3" className="team-image" />
+      <h3>Rudransh Singh</h3>
+      <p className="role">Role Title</p>
+      <p className="description">Description of what Person 3 did and their contributions to the project.</p>
+    </div>
+  </div>
+</div>
+
 
           <Button
             variant="contained"

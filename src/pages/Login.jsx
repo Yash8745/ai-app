@@ -50,6 +50,20 @@ const Login = () => {
   };
 
   return (
+    <Box
+  sx={{
+    marginTop: 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    borderRadius: 2,
+    padding: 3,
+    backgroundColor: '#ADD8E6', // Light blue background color
+    color: '#ffffff', // White text for contrast
+    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)', // Deeper shadow for a more elevated look
+    border: '2px solid #003366', // Dark blue border
+  }}
+>
     <Container component="main" maxWidth="xs">
       <Box
         sx={{
@@ -61,7 +75,8 @@ const Login = () => {
           padding: 3,
           backgroundColor: '#ADD8E6', // Black background for the container
           color: '#ffffff', // White text for contrast
-          boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)', // Deeper shadow for a more elevated look
+          border: '2px solid #003366', // Dark blue border
+          minHeight: '100vh', // Ensure the background takes up the full height
         }}
       >
         {/* Heading */}
@@ -174,6 +189,7 @@ const Login = () => {
         </Box>
       </Box>
     </Container>
+    </Box>
   );
 };
 

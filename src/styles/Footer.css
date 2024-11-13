@@ -1,96 +1,115 @@
 /* General Footer Styling */
+html, body {
+    height: 100%;  /* Ensure the body takes full height */
+    margin: 0;     /* Remove default margin */
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;  /* Space out content */
+}
+
+/* Main content section (if you have one) */
+main {
+    flex-grow: 1;  /* Takes remaining space */
+}
+
+/* Footer stays at the bottom */
 footer {
     background-color: #ffffff;
     color: #003366;
     width: 100%;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    box-shadow: none;
-    padding: 20px 0; /* Add more padding for spacing */
+    padding: 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .footer-container {
+    box-shadow: none;
+    margin-top: auto;  /* Ensures footer stays at the bottom */
+}
+
+/* Footer Container */
+.footer-container {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-  }
-  
-  .footer-grid {
+}
+
+/* Footer Grid */
+.footer-grid {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two columns for Explore and Stay Connected */
     gap: 30px;
     padding: 20px 0;
-  }
-  
-  .footer-brand-description {
+}
+
+/* Footer Brand Description */
+.footer-brand-description {
     text-align: center;
-  }
-  
-  .footer-links {
+}
+
+/* Footer Links */
+.footer-links {
     display: flex;
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
-  }
-  
-  .footer-link-section {
+}
+
+.footer-link-section {
     text-align: center;
-  }
-  
-  .footer-column-title {
+}
+
+.footer-column-title {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 10px;
-  }
-  
-  .footer-link-list {
+}
+
+.footer-link-list {
     display: flex;
     gap: 16px;
     justify-content: center;
-  }
-  
-  .footer-link {
+}
+
+.footer-link {
     color: #003366;
     text-decoration: none;
     font-size: 12px;
     transition: color 0.3s ease;
-  }
-  
-  .footer-link:hover {
+}
+
+.footer-link:hover {
     color: #ffffff;
-  }
-  
-  /* Footer Bottom Styling */
-  .footer-bottom {
+}
+
+/* Footer Bottom Styling */
+.footer-bottom {
     text-align: center;
     border-top: 1px solid #444444;
     padding-top: 8px;
-  }
-  
-  .footer-bottom-text {
+}
+
+.footer-bottom-text {
     color: #003366;
     font-size: 10px;
     margin: 0;
-  }
-  
-  /* Mobile Responsiveness */
-  @media (max-width: 768px) {
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
     .footer-links {
-      flex-direction: column; /* Stack the sections on mobile */
-      gap: 20px;
+        flex-direction: column; /* Stack the sections on mobile */
+        gap: 20px;
     }
-  
+
     .footer-column-title {
-      text-align: left; /* Align titles to the left on mobile */
+        text-align: left; /* Align titles to the left on mobile */
     }
-  
+
     .footer-bottom {
-      padding-top: 20px;
+        padding-top: 20px;
     }
-  }
-  
+}
