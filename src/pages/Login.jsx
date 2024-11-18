@@ -1,195 +1,198 @@
-import { useState } from 'react'; // Import useState to manage form data
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
-import { Container, Typography, TextField, Button, Grid, Box, CircularProgress } from '@mui/material';
-import axios from 'axios'; // Import axios for making HTTP requests
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Container, Typography, TextField, Button, Grid, Box, CircularProgress, GlobalStyles } from '@mui/material';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
-  const navigate = useNavigate(); // Initialize useNavigate
-
-  // State variables to manage form input and messages
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [successMessage, setSuccessMessage] = useState(''); // State for success message
-  const [errorMessage, setErrorMessage] = useState(''); // State for error message
-  const [loading, setLoading] = useState(false); // State for loading indicator
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  // Handle form submission
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent page reload on form submit
-
-    // Start loading
+    event.preventDefault();
     setLoading(true);
-
-    // Create user object with username converted to lowercase
     const user = {
-      username: username.toLowerCase(), // Use username here
-      password: password,
+      username: username.toLowerCase(),
+      password,
     };
 
     try {
-      // Send POST request to login endpoint
       const response = await axios.post('http://localhost:3001/api/login', user);
-      console.log(response.data); // Log success message
-
-      setSuccessMessage(response.data.message || "Login successful!"); // Set success message
-      setErrorMessage(''); // Clear any existing error message
-
-      // Navigate to Home page after a successful login
-      navigate('/home'); // Adjust the path according to your routing setup
-
+      setSuccessMessage(response.data.message || "Login successful!");
+      setErrorMessage('');
+      navigate('/home');
     } catch (error) {
-      console.error('Error during login:', error.response?.data); // Log error message
-
-      // Set error message based on server response or a default one
       setErrorMessage(error.response?.data.message || 'Login failed. Please check your credentials.');
-      setSuccessMessage(''); // Clear any existing success message
+      setSuccessMessage('');
     } finally {
-      setLoading(false); // Stop loading after request completes
+      setLoading(false);
     }
   };
 
   return (
-    <Box
-  sx={{
-    marginTop: 8,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    borderRadius: 2,
-    padding: 3,
-    backgroundColor: '#ADD8E6', // Light blue background color
-    color: '#ffffff', // White text for contrast
-    boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)', // Deeper shadow for a more elevated look
-    border: '2px solid #003366', // Dark blue border
-  }}
->
-    <Container component="main" maxWidth="xs">
+    <>
+      <GlobalStyles
+        styles={{
+          body: { backgroundColor: '#ffffff', margin: 0, padding: 0, minHeight: '100vh' },
+          html: { backgroundColor: '#ffffff', margin: 0, padding: 0, minHeight: '100vh' },
+        }}
+      />
       <Box
         sx={{
-          marginTop: 8,
+          height: '100vh',
+          backgroundColor: '#ffffff',
           display: 'flex',
-          flexDirection: 'column',
+          justifyContent: 'center',
           alignItems: 'center',
-          borderRadius: 2,
-          padding: 3,
-          backgroundColor: '#ADD8E6', // Black background for the container
-          color: '#ffffff', // White text for contrast
-          border: '2px solid #003366', // Dark blue border
-          minHeight: '100vh', // Ensure the background takes up the full height
         }}
       >
-        {/* Heading */}
-        <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#003366' }}>
-          Login
-        </Typography>
-
-        {/* Success and Error Messages */}
-        {successMessage && (
-          <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
-            {successMessage}
-          </Typography>
-        )}
-        {errorMessage && (
-          <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
-            {errorMessage}
-          </Typography>
-        )}
-
-        {/* Login Form */}
-        <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                autoComplete="username"
-                variant="outlined"
-                value={username} // Bind state value
-                onChange={(e) => setUsername(e.target.value)} // Update state on input change
-                sx={{
-                  borderRadius: '8px',
-                  backgroundColor: '#ffffff',
-                  '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#ffffff',
-                  },
-                  '& .MuiInputBase-input': {
-                    color: '##003366',
-                  },
-                }}
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                variant="outlined"
-                value={password} // Bind state value
-                onChange={(e) => setPassword(e.target.value)} // Update state on input change
-                sx={{
-                  borderRadius: '8px',
-                  backgroundColor: '#ffffff',
-                  '&:hover .MuiOutlinedInput-notchedOutline': {
-                    borderColor: '#ffffff',
-                  },
-                  '& .MuiInputBase-input': {
-                    color: '#003366',
-                  },
-                }}
-              />
-            </Grid>
-          </Grid>
-
-          {/* Show loading spinner when loading, else show Login button */}
-          {loading ? (
-            <CircularProgress sx={{ mt: 3, mb: 2, color: '#ffffff' }} />
-          ) : (
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{
-                mt: 3,
-                mb: 2,
-                borderRadius: '20px',
-                padding: '10px 0',
-                backgroundColor: '#003366', // Darker gray button color
-                color: '#ffffff', // White text on button
-                '&:hover': {
-                  backgroundColor: '#ffffff', // Button turns white on hover
-                  color: '#000000', // Text turns black on hover
-                },
-                textTransform: 'none',
-              }}
-              disabled={loading} // Disable button when loading
-            >
+        <Container
+          component="main"
+          maxWidth="lg"
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'stretch', // Stretch child components to fill container
+            padding: 0, // Remove padding
+            height: '80vh', // Make the container taller to better fill the screen
+          }}
+        >
+          {/* Left Side Box (Form) */}
+          <Box
+            sx={{
+              flex: 1, // Takes up 50% of the container
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 4,
+              backgroundColor: '#add8e6',
+              boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.3)',
+            }}
+          >
+            <Typography component="h1" variant="h5" sx={{ marginBottom: 2, fontWeight: 'bold', color: '#003366' }}>
               Login
-            </Button>
-          )}
-
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Typography variant="body2" sx={{ color: '#003366' }}>
-                Don’t have an account?{' '}
-                <Link to="/" style={{ textDecoration: 'none', color: '#003366', transition: 'color 0.3s' }}>
-                  Sign up
-                </Link>
+            </Typography>
+            {successMessage && (
+              <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
+                {successMessage}
               </Typography>
-            </Grid>
-          </Grid>
-        </Box>
+            )}
+            {errorMessage && (
+              <Typography variant="body1" sx={{ color: '#003366', marginBottom: 2 }}>
+                {errorMessage}
+              </Typography>
+            )}
+            <Box component="form" sx={{ mt: 1, width: '100%' }} onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="username"
+                    label="Username"
+                    name="username"
+                    autoComplete="username"
+                    variant="outlined"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    sx={{
+                      borderRadius: '8px',
+                      backgroundColor: '#ffffff',
+                      '& .MuiInputBase-input': {
+                        color: '#003366',
+                      },
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    variant="outlined"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    sx={{
+                      borderRadius: '8px',
+                      backgroundColor: '#ffffff',
+                      '& .MuiInputBase-input': {
+                        color: '#003366',
+                      },
+                    }}
+                  />
+                </Grid>
+              </Grid>
+              {loading ? (
+                <CircularProgress sx={{ mt: 3, mb: 2, color: '#003366' }} />
+              ) : (
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{
+                    mt: 3,
+                    mb: 2,
+                    borderRadius: '20px',
+                    padding: '10px 0',
+                    backgroundColor: '#003366',
+                    color: '#ffffff',
+                    '&:hover': {
+                      backgroundColor: '#ffffff',
+                      color: '#003366',
+                    },
+                    textTransform: 'none',
+                  }}
+                  disabled={loading}
+                >
+                  Login
+                </Button>
+              )}
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Typography variant="body2" sx={{ color: '#003366' }}>
+                    Don’t have an account?{' '}
+                    <Link to="/" style={{ textDecoration: 'none', color: '#003366', transition: 'color 0.3s' }}>
+                      Sign up
+                    </Link>
+                  </Typography>
+                </Grid>
+              </Grid>
+            </Box>
+          </Box>
+
+          {/* Right Side Box (Welcome Message) */}
+          <Box
+            sx={{
+              flex: 1, // Takes up 50% of the container
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: '#003366',
+              color: '#ADD8E6',
+              padding: 4,
+              textAlign:'center',
+            }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: 'bold' }}>
+              Hello, Friend
+            </Typography>
+            <Typography variant="body1">
+              Welcome back! Please login to access your account.
+            </Typography>
+          </Box>
+        </Container>
       </Box>
-    </Container>
-    </Box>
+    </>
   );
 };
 
