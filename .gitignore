@@ -35,3 +35,4 @@ typings/
 .yarn-integrity
 #Video path
 public/Video
+.env
