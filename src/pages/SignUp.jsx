@@ -5,6 +5,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { GlobalStyles } from '@mui/system';
+import { v4 as uuidv4 } from 'uuid';
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const SignUp = () => {
       username: fullName,
       email,
       password,
+      uuid: uuidv4(),
     };
 
     try {

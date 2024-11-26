@@ -22,6 +22,7 @@ const Login = () => {
 
     try {
       const response = await axios.post('http://localhost:3001/api/login', user);
+      console.log(response.data);
       setSuccessMessage(response.data.message || "Login successful!");
       setErrorMessage('');
       navigate('/home');
