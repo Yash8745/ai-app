@@ -115,8 +115,10 @@ const Navigation = () => {
             onClose={handleFeaturesMenuClose}
             sx={{ mt: '45px' }}
           >
-            <MenuItem onClick={() => navigateToPage('model')}>Model</MenuItem>
-            <MenuItem onClick={() => navigateToPage('main')}>Main</MenuItem>
+            
+            <MenuItem onClick={() => navigateToPage('main')}>Save Audio</MenuItem>
+            <MenuItem onClick={() => navigateToPage('image')}>Save Image</MenuItem>
+            <MenuItem onClick={() => navigateToPage('model')}>Ask Question</MenuItem>
           </Menu>
 
           {/* Profile Menu */}

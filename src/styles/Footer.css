@@ -1,27 +1,28 @@
 /* General Footer Styling */
 html, body {
-    height: 100%;  /* Ensure the body takes full height */
+    height: 100%;  /* Ensure the body and html take full height */
     margin: 0;     /* Remove default margin */
     display: flex;
     flex-direction: column; /* Stack content vertically */
+    background-color: #ADD8E6;  /* Light blue background globally */
 }
 
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;  /* Space out content */
+    justify-content: space-between;  /* Space out content so footer stays at the bottom */
 }
 
 /* Main content section (if you have one) */
 main {
-    flex-grow: 1;  /* Takes remaining space */
+    flex-grow: 1;  /* Takes remaining space, pushing footer to the bottom */
 }
 
 /* Footer stays at the bottom */
 footer {
-    background-color: #ffffff;
-    color: #003366;
-    width: 100%;
+    background-color: #ffffff;  /* White background for footer */
+    color: #003366;  /* Dark text color */
+    width: 100%;  /* Full width of the page */
     padding: 20px 0;
     display: flex;
     justify-content: center;
@@ -35,6 +36,7 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
+    background-color: #ffffff;  /* Ensure footer container has a white background */
 }
 
 /* Footer Grid */
@@ -75,14 +77,14 @@ footer {
 }
 
 .footer-link {
-    color: #003366;
+    color: #003366;  /* Dark link color */
     text-decoration: none;
     font-size: 12px;
     transition: color 0.3s ease;
 }
 
 .footer-link:hover {
-    color: #ffffff;
+    color: #66ccff;  /* Hover effect for links */
 }
 
 /* Footer Bottom Styling */
@@ -93,7 +95,7 @@ footer {
 }
 
 .footer-bottom-text {
-    color: #003366;
+    color: #003366;  /* Dark text for footer bottom */
     font-size: 10px;
     margin: 0;
 }

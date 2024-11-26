@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Main from './pages/Main';
 import Login from './pages/Login';
 import Model from './pages/Model';
+import Image from './pages/Image';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/main" element={<Main />} />
           <Route path="/model" element={<Model />} />
+          <Route path="/image" element={<Image />} />
         </Routes>
       </Box>
     </Router>
