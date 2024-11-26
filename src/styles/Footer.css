@@ -5,6 +5,7 @@ html, body {
     display: flex;
     flex-direction: column; /* Stack content vertically */
     background-color: #ADD8E6;  /* Light blue background globally */
+    width:100%
 }
 
 body {
@@ -19,8 +20,18 @@ main {
 }
 
 /* Footer stays at the bottom */
+/* Three Buttons Section */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 60px; /* Existing margin for spacing from above content */
+    margin-bottom: 0px; /* Add margin to create space above the footer */
+}
+
+/* Footer Styling */
 footer {
-    background-color: #ffffff;  /* White background for footer */
+    background-color: #ADD8E6;  /* White background for footer */
     color: #003366;  /* Dark text color */
     width: 100%;  /* Full width of the page */
     padding: 20px 0;
@@ -30,13 +41,18 @@ footer {
     box-shadow: none;
     margin-top: auto;  /* Ensures footer stays at the bottom */
 }
+* {
+    box-sizing: border-box;
+  }
+  
 
 /* Footer Container */
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0%;
     width: 100%;
-    background-color: #ffffff;  /* Ensure footer container has a white background */
+    background-color: #ADD8E6;  /* Ensure footer container has a white background */
 }
 
 /* Footer Grid */
@@ -90,7 +106,7 @@ footer {
 /* Footer Bottom Styling */
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid #444444;
+    border-top: 1px solid #003366;
     padding-top: 8px;
 }
 
