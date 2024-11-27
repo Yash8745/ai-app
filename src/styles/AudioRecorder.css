@@ -140,3 +140,34 @@
     min-height: 100vh;
     padding: 20px;
 }
+.avatar-container {
+    cursor: pointer;
+    display: inline-block;
+    padding: 20px;
+    transition: transform 0.2s ease;
+}
+
+.avatar-container.recording {
+    transform: scale(1.2); /* Scale up the avatar when recording */
+}
+
+.avatar {
+    width: 200px;  /* Set size of your avatar */
+    height: 200px;
+    border-radius: 50%;  /* Optional: make the avatar round */
+}
+
+.avatar-container:hover {
+    transform: scale(1.1);  /* Add hover effect for interactivity */
+}
+
+/* Optional: Animation when avatar starts recording */
+@keyframes avatarRecording {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(20deg); }
+    100% { transform: rotate(0deg); }
+}
+
+.avatar-container.recording img {
+    animation: avatarRecording 1s infinite;
+}

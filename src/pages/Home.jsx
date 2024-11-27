@@ -25,8 +25,8 @@ const techStackImages = [
 const Home = () => {
   const navigate = useNavigate(); // Initialize useNavigate
 
-  const handleNext = () => {
-    navigate('/main'); // Navigate to the Main component
+  const handleNavigate = (route) => {
+    navigate(route); // Navigate to the specified route
   };
 
   return (
@@ -56,18 +56,18 @@ const Home = () => {
         </Carousel>
 
         <main className="home-main">
-          {/* First Two-column layout for Welcome Section */}
+          {/* Welcome Section */}
           <div className="welcome-container">
             <div className="welcome-video">
               <video width="100%" controls>
-              <source src="/public/Video/Memopin.mp4" type="video/mp4" />
+                <source src="/public/Video/Memopin.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
             <div className="welcome-text">
               <h1>Welcome to Memopin!</h1>
               <p>
-                Your AI-enhanced memory recall tool. In today’s digital world, fragmented memories and forgetfulness across platforms are common 
+              Your AI-enhanced memory recall tool. In today’s digital world, fragmented memories and forgetfulness across platforms are common 
                 challenges. People often struggle to recall meaningful moments, as photos, conversations, and 
                 videos are scattered across different apps, making retrieval difficult.
                 For individuals with Alzheimer's, memory impairments cause daily challenges like confusion, 
@@ -106,53 +106,79 @@ const Home = () => {
 
           {/* About Us Section */}
           <div className="about-us-container">
-  <h2>About Us</h2>
-  <div className="about-us-team">
-    {/* Person 1 */}
-    <div className="team-member">
-      <img src="/PersonImages/person 1.webp" alt="Person 1" className="team-image" />
-      <h3>Yash Narang</h3>
-      
-      <p className="role">Model Architect</p>
-      <p className="description"> Created the whole architecture of model and pipeline</p>
-    </div>
+            <h2>About Us</h2>
+            <div className="about-us-team">
+              {/* Person 1 */}
+              <div className="team-member">
+                <img src="/PersonImages/person 1.webp" alt="Person 1" className="team-image" />
+                <h3>Yash Narang</h3>
+                <p className="role">Model Architect</p>
+                <p className="description">Created the whole architecture of the model and pipeline</p>
+              </div>
 
-    {/* Person 2 */}
-    <div className="team-member">
-      <img src="/PersonImages/person 2.jpg" alt="Person 2" className="team-image" />
-      <h3>Nivarthi Ananya</h3>
-      <p className="role">Frontend and Database Engineer</p>
-      <p className="description">Made the UI and connected with database.</p>
-    </div>
+              {/* Person 2 */}
+              <div className="team-member">
+                <img src="/PersonImages/person 2.jpg" alt="Person 2" className="team-image" />
+                <h3>Nivarthi Ananya</h3>
+                <p className="role">Frontend and Database Engineer</p>
+                <p className="description">Made the UI and connected with the database.</p>
+              </div>
 
-    {/* Person 3 */}
-    <div className="team-member">
-      <img src="/PersonImages/person 3.jpg" alt="Person 3" className="team-image" />
-      <h3>Rudransh Singh</h3>
-      <p className="role">Model Engineer</p>
-      <p className="description">Wrote the code for models.</p>
-    </div>
-  </div>
-</div>
+              {/* Person 3 */}
+              <div className="team-member">
+                <img src="/PersonImages/person 3.jpg" alt="Person 3" className="team-image" />
+                <h3>Rudransh Singh</h3>
+                <p className="role">Model Engineer</p>
+                <p className="description">Wrote the code for models.</p>
+              </div>
+            </div>
+          </div>
 
-
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleNext}
-            sx={{
-              mt: 3,
-              mb: 5, // Add margin-bottom to create space below the button
-              borderRadius: '20px',
-              padding: '15px 30px', // Larger padding
-              textTransform: 'none',
-              fontSize: '30px',
-              minWidth: '200px',
-              height: '70px',
-            }}
-          >
-            Next
-          </Button>
+          {/* Three Buttons for Navigation */}
+          <div className="button-group" style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => handleNavigate('/main')} // Navigate to /main
+              sx={{
+                borderRadius: '20px',
+                padding: '15px 30px',
+                textTransform: 'none',
+                fontSize: '20px',
+                minWidth: '150px',
+              }}
+            >
+              Save Audio
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => handleNavigate('/image')} // Navigate to /image
+              sx={{
+                borderRadius: '20px',
+                padding: '15px 30px',
+                textTransform: 'none',
+                fontSize: '20px',
+                minWidth: '150px',
+              }}
+            >
+              Save Image
+            </Button>
+            <Button
+              variant="contained"
+              color="success"
+              onClick={() => handleNavigate('/model')} // Navigate to /model
+              sx={{
+                borderRadius: '20px',
+                padding: '15px 30px',
+                textTransform: 'none',
+                fontSize: '20px',
+                minWidth: '150px',
+              }}
+            >
+              Ask Question
+            </Button>
+          </div>
         </main>
       </div>
       <Footer />
