@@ -5,11 +5,12 @@ import '../styles/AudioRecorder.css';
 const AudioModel = () => {
     const [isRecording, setIsRecording] = useState(false);
     const [status, setStatus] = useState('');
-    const [responseText, setResponseText] = useState(''); // State to store only the response text
-    const [ setHasSpoken] = useState(false); // State to track if the text has been spoken
+    const [responseText, setResponseText] = useState(''); // State to store the response text
+    const [hasSpoken, setHasSpoken] = useState(false); // Track if the text has been spoken
     const mediaRecorderRef = useRef(null);
     const audioChunksRef = useRef([]);
 
+    // Initialize MediaRecorder
     useEffect(() => {
         const initializeRecorder = async () => {
             try {
@@ -33,6 +34,7 @@ const AudioModel = () => {
         initializeRecorder();
     }, []);
 
+    // Start recording
     const handleRecord = () => {
         if (mediaRecorderRef.current) {
             setIsRecording(true);
@@ -44,6 +46,7 @@ const AudioModel = () => {
         }
     };
 
+    // Stop recording
     const handleStop = () => {
         if (mediaRecorderRef.current) {
             setIsRecording(false);
@@ -52,6 +55,7 @@ const AudioModel = () => {
         }
     };
 
+    // Upload audio and get response
     const uploadAudio = async (audioBlob) => {
         setStatus('Processing...');
 
@@ -88,60 +92,70 @@ const AudioModel = () => {
         }
     };
 
-    // Function to convert text to speech
+    // Convert text to speech
     const speakText = (text) => {
         if (text) {
-            console.log('Speaking text:', text); // Debugging: Check if text is passed to speech
-            
-            // Create a new speech utterance
-            const speech = new SpeechSynthesisUtterance(text);
-            speech.lang = 'en-US';  // You can change the language if needed
-            
-            // Get available voices
-            const voices = window.speechSynthesis.getVoices();
-            
-            // Find a female voice (typically, you can choose based on name or gender)
-            const femaleVoice = voices.find(voice => voice.name.toLowerCase().includes('female'));
-            
-            // If a female voice is found, set it to the speech utterance
-            if (femaleVoice) {
-                speech.voice = femaleVoice;
-            } else {
-                // Default to the first available voice if no female voice is found
-                console.log("no female voice")
-                speech.voice = voices[0];
-            }
+            console.log('Speaking text:', text);
 
-            // Speak the text
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-US';
+
+            const voices = window.speechSynthesis.getVoices();
+            const femaleVoice = voices.find((voice) =>
+                voice.name.toLowerCase().includes('female')
+            );
+
+            speech.voice = femaleVoice || voices[0];
+
+            speech.onstart = () => {
+                console.log('Speech started');
+            };
+
+            speech.onend = () => {
+                console.log('Speech ended');
+                setHasSpoken(true); // Mark as spoken after speech ends
+            };
+
             window.speechSynthesis.speak(speech);
         } else {
             console.error('No text to speak!');
         }
     };
 
-    // UseEffect to trigger speech whenever responseText updates
+    // Trigger speech when responseText updates
     useEffect(() => {
-        if (responseText) {
+        if (responseText && !hasSpoken) {
             speakText(responseText); // Speak the response text
-            setHasSpoken(true); // Mark as spoken
         }
-    }, [responseText]); // This will run every time responseText changes, regardless of hasSpoken
+    }, [responseText, hasSpoken]);
 
     return (
         <div className="audio-recorder-container">
             <Navbar />
             <div style={{ textAlign: 'center', marginTop: '20px', padding: '20px' }}>
-                <p style={{ fontSize: '28px', fontWeight: 'bold', margin: '20px 0', color: '#003366' }}>
+                <p
+                    style={{
+                        fontSize: '28px',
+                        fontWeight: 'bold',
+                        margin: '20px 0',
+                        color: '#003366',
+                    }}
+                >
                     Ask Question so that you can retrieve your moments.
                 </p>
             </div>
 
-            <h2 style={{ color: '#003366' }}>Hey Friend! Ask anything about you. I am here to answer</h2>
+            <h2 style={{ color: '#003366' }}>
+                Hey Friend! Ask anything about you. I am here to answer
+            </h2>
 
             {/* Avatar interaction */}
-            <div className={`avatar-container ${isRecording ? 'recording' : ''}`} onClick={isRecording ? handleStop : handleRecord}>
-                <img 
-                    src="/Avatar/boy.png"  // Correct path to the public folder
+            <div
+                className={`avatar-container ${isRecording ? 'recording' : ''}`}
+                onClick={isRecording ? handleStop : handleRecord}
+            >
+                <img
+                    src="/Avatar/boy.png" // Correct path to the public folder
                     alt="Interactive Avatar"
                     className="avatar"
                 />
@@ -150,8 +164,10 @@ const AudioModel = () => {
             {/* Display status messages with dark blue color */}
             {status && <p style={{ color: '#003366' }}>{status}</p>}
 
-            {/* Display response text only */}
-            {responseText && <p style={{ color: '#003366', fontWeight: 'bold' }}>{responseText}</p>}
+            {/* Display response text */}
+            {responseText && (
+                <p style={{ color: '#003366', fontWeight: 'bold' }}>{responseText}</p>
+            )}
         </div>
     );
 };

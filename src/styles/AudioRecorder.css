@@ -1,3 +1,9 @@
+/* General Footer Styling */
+html, body {
+     /* Stack content vertically */
+    background-color: #ADD8E6;  /* Light blue background globally */
+    
+}
 /* AudioRecorder.css */
 .audio-recorder-container {
     background-color: #ADD8E6; /* Light blue color */
