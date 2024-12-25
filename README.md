@@ -80,3 +80,5 @@ The AI backend is responsible for handling audio processing, Pinecone integratio
 The **Node Backend** handles the MongoDB-related functionality, including user management, authentication, and storing login,signup related data.
 
 - Repository URL: [node-backend](https://github.com/Yash8745/node-backend)
+
+### After running node-backend and ai-backend run npm run dev to get all the functions the web app
